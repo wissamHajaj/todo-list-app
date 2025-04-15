@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>To-Do List App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>TODO LIST</h1>
+      <div class="todo-card-input">
+        <div class="input-container">
+          <input
+            type="text"
+            class="task-input"
+            placeholder="What would you like to do?"
+          />
+          <button class="add-btn">ADD</button>
+        </div>
+      </div>
+      <div class="todo-card-list">
+        <div class="card-list-header">
+          <h3>List</h3>
+          <h3>Status</h3>
+          <h3>Delete</h3>
+        </div>
+        <ul class="todo-list">
+          <li class="todo-item">
+            <input type="checkbox" class="task-checkbox" />
+            <span class="task-name">Go to gym</span>
+            <span class="task-status">Pending</span>
+            <button class="delete-btn">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
