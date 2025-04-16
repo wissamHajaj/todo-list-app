@@ -115,6 +115,11 @@ h1 {
   background-color: #b52b38;
 }
 
+.completed {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 @media (max-width: 600px) {
   .todo-card-input {
     text-align: center;
