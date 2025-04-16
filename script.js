@@ -51,3 +51,56 @@ function addTaskToUi(task) {
 
   document.querySelector("ul").appendChild(li);
 }
+
+// Delete task
+const tasksUl = document.querySelector(".todo-list");
+
+tasksUl.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    // get the parent li of the clicked delete button
+    const li = e.target.closest("li");
+
+    // get the data-id from li
+    const taskId = li.dataset.id;
+    // remove li from UI
+    li.remove();
+
+    // remove the task from local storage
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const updateTask = tasks.filter((task) => task.id !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(updateTask));
+  }
+});
+
+// update the status of the task in UI and local storage
+tasksUl.addEventListener("click", (e) => {
+  if (e.target.type === "checkbox") {
+    const li = e.target.closest("li");
+    const taskId = li.dataset.id;
+    console.log(taskId);
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const updatedTask = tasks.map((task) => {
+      if (task.id === taskId) {
+        return {
+          ...task,
+          status: e.target.checked ? "completed" : "pending",
+        };
+      }
+      return task;
+    });
+    localStorage.setItem("tasks", JSON.stringify(updatedTask));
+
+    // get the span of the task name inside the li
+    const taskNameSpan = li.querySelector(".task-name");
+    // get the span of the task status inside the li
+    const taskStatusSpan = li.querySelector(".task-status");
+
+    if (e.target.checked) {
+      taskNameSpan.classList.add("completed");
+      taskStatusSpan.innerHTML = "completed";
+    } else {
+      taskNameSpan.classList.remove("completed");
+      taskStatusSpan.innerHTML = "pending";
+    }
+  }
+});
