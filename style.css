@@ -126,15 +126,18 @@ h1 {
   border-bottom: #979696 solid 1px;
 }
 
-.filter-container button {
+.filter-btn {
   padding: 5px;
   border-radius: 5px;
   border: none;
   background-color: #dddee1;
   cursor: pointer;
 }
-.filter-container button:hover {
-  background-color: #a3a4a8;
+
+/* to force the filter button to take the new background color */
+.filter-btn.active {
+  color: white;
+  background-color: #3596fd;
 }
 @media (max-width: 600px) {
   .todo-card-input {
