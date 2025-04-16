@@ -104,3 +104,28 @@ tasksUl.addEventListener("click", (e) => {
     }
   }
 });
+
+const filterContainer = document.querySelector(".filter-container");
+
+filterContainer.addEventListener("click", (e) => {
+  const filterType = e.target.dataset.filter;
+
+  // remove all existing class active
+  document.querySelectorAll(".filter-btn").forEach((btn) => {
+    btn.classList.remove("active");
+  });
+  // add class active to the target button
+  e.target.classList.add("active");
+
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  const ul = document.querySelector(".todo-list");
+  ul.innerHTML = "";
+  let filteredTasks = tasks;
+  // get only the tasks according to the filterType
+  if (filterType !== "all") {
+    filteredTasks = tasks.filter((task) => task.status === filterType);
+    // console.log(filteredTasks);
+  }
+  filteredTasks.forEach((task) => addTaskToUi(task));
+});
